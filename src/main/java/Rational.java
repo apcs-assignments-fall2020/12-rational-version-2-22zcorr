@@ -69,22 +69,29 @@ public class Rational
     // Returns whether or not the Rational is currently simplified
     // or not
     public boolean isSimplified() { 
-        return false; // YOUR CODE HERE
+        int gcd = greatestCommonFactor(this.numerator,this.denominator);
+        return this.numerator/gcd==this.numerator; // YOUR CODE HERE
     }
 
     // Calculates the double value of our Rational
     public double calculateDecimalValue() { 
-        return 0.0; // YOUR CODE HERE
+        return ((double) this.numerator)  /  ((double)this.denominator); // YOUR CODE HERE
     }
 
     // Returns the Rational we get from raising  the rational number to an integer power
     public Rational pow(int exponent) {
-        return null; // YOUR CODE HERE
+        Rational input = this;
+        Rational output = new Rational(1,1);
+        for(int i=0;i<exponent;i++){
+            output.numerator = output.numerator*input.numerator;
+            output.denominator = output.denominator*input.denominator;
+        }
+        return simplify(output);
     }
 
     // Checks to see if either the numerator or denominator match a given number
     public boolean matches(int x) {
-        return false; // YOUR CODE HERE
+        return this.numerator==x || this.denominator==x; // YOUR CODE HERE
     }
 
 
@@ -94,18 +101,21 @@ public class Rational
     // Methods you'll write for homework:
     // Returns whether or not the Rational is a negative number
     public boolean isNegative() { 
-        return false; // YOUR CODE HERE
+        return this.denominator<0&&this.numerator>0||this.numerator<0&&this.denominator>0;
     }
 
     // Calculates the reciprocal of a Rational number.
     // The reciprocal of 3/4 is 4/3, the reciprocal of 1/2 is 2/1
     public Rational reciprocal() {
-        return null; // YOUR CODE HERE
+        Rational out = new Rational(1,1);
+        out.numerator = this.denominator;
+        out.denominator =this.numerator;
+        return out;
     }
 
     // Checks whether the current Rational is the exactly the same as other
     public boolean equals(Rational other) {
-        return false; // YOUR CODE HERE
+        return this.numerator==other.numerator&&this.denominator==other.denominator; // YOUR CODE HERE
     }
 
 
